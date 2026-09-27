@@ -51,24 +51,24 @@ class _FormscreenState extends State<Formscreen> {
               children: [
                 const Text("ชื่อ",style: TextStyle(fontSize: 20),),
                 TextFormField(
-                  validator:
+                  validator: 
                   RequiredValidator(errorText: "กรุณาป้อนชื่อ"),
                   onSaved: (fname) {
                     myStudent.fname = fname!;
                   },
                 ),
                 const SizedBox(height: 20),
-
+          
                 const Text("นามสกุล",style: TextStyle(fontSize: 20),),
                 TextFormField(
-                  validator:
+                  validator: 
                   RequiredValidator(errorText: "กรุณาป้อนนามสกุล"),
                   onSaved: (lname) {
                     myStudent.lname = lname!;
                   },
                 ),
                 const SizedBox(height: 20),
-
+          
                 const Text("อีเมล",style: TextStyle(fontSize: 20),),
                 TextFormField(
                   validator: MultiValidator([
@@ -85,7 +85,7 @@ class _FormscreenState extends State<Formscreen> {
                 const Text("คะแนน",style: TextStyle(fontSize: 20),),
                 TextFormField(
                   keyboardType: TextInputType.number,
-                  validator:
+                  validator: 
                   RequiredValidator(errorText: "กรุณาป้อนคะแนน"),
                   onSaved: (score) {
                     myStudent.score = score!;
@@ -98,8 +98,8 @@ class _FormscreenState extends State<Formscreen> {
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color.fromARGB(255, 49, 224, 157),),
-
-                    onPressed: () async {
+                    
+                    onPressed: () async { 
                       if(formKey.currentState!.validate()){
                         formKey.currentState!.save();
                         await _studentCollection.add({
@@ -109,8 +109,8 @@ class _FormscreenState extends State<Formscreen> {
                           "score": myStudent.score,
                         });
                         formKey.currentState!.reset();
-
-
+                      
+                      
                       //print("${myStudent.fname} ${myStudent.lname} ${myStudent.email} ${myStudent.score}");
                       }
                     },

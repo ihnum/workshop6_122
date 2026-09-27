@@ -16,7 +16,7 @@ class _DisplayScreenState extends State<DisplayScreen> {
         centerTitle: true,
         backgroundColor: const Color.fromARGB(255, 49, 224, 157),
       ),
-
+      
     );
   }
 }
