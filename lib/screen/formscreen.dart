@@ -17,7 +17,6 @@ class _FormscreenState extends State<Formscreen> {
   Student myStudent = Student(
     fname: "", lname: "", email: "", score: "");
   final Future<FirebaseApp> firebase = Firebase.initializeApp();
-  CollectionReference _studentCollection = FirebaseFirestore.instance.collection("student");
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +34,8 @@ class _FormscreenState extends State<Formscreen> {
           );
         }
         if(snapshot.connectionState == ConnectionState.done){
-              return Scaffold(
+          final CollectionReference _studentCollection = FirebaseFirestore.instance.collection("student");
+          return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: const Color.fromARGB(255, 49, 224, 157),
@@ -52,7 +52,7 @@ class _FormscreenState extends State<Formscreen> {
                 const Text("ชื่อ",style: TextStyle(fontSize: 20),),
                 TextFormField(
                   validator: 
-                  RequiredValidator(errorText: "กรุณาป้อนชื่อ"),
+                  RequiredValidator(errorText: "กรุณาป้อนชื่อ").call,
                   onSaved: (fname) {
                     myStudent.fname = fname!;
                   },
@@ -62,7 +62,7 @@ class _FormscreenState extends State<Formscreen> {
                 const Text("นามสกุล",style: TextStyle(fontSize: 20),),
                 TextFormField(
                   validator: 
-                  RequiredValidator(errorText: "กรุณาป้อนนามสกุล"),
+                  RequiredValidator(errorText: "กรุณาป้อนนามสกุล").call,
                   onSaved: (lname) {
                     myStudent.lname = lname!;
                   },
@@ -74,7 +74,7 @@ class _FormscreenState extends State<Formscreen> {
                   validator: MultiValidator([
                     EmailValidator(errorText: "รูปแบบอีเมลไม่ถูกต้อง"),
                     RequiredValidator(errorText: "กรุณาป้อนอีเมล"),
-                  ]),
+                  ]).call,
                   onSaved: (email) {
                     myStudent.email = email!;
                   },
@@ -86,7 +86,7 @@ class _FormscreenState extends State<Formscreen> {
                 TextFormField(
                   keyboardType: TextInputType.number,
                   validator: 
-                  RequiredValidator(errorText: "กรุณาป้อนคะแนน"),
+                  RequiredValidator(errorText: "กรุณาป้อนคะแนน").call,
                   onSaved: (score) {
                     myStudent.score = score!;
                   },
